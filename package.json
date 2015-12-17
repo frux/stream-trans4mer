@@ -4,12 +4,15 @@
   "description": "Allows you to preprocess streaming data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "keywords": [
     "stream",
     "transform"
   ],
   "author": "frux <qdinov@yandex.ru>",
-  "license": "WTFPL"
+  "license": "WTFPL",
+  "devDependencies": {
+    "mocha": "^2.3.4"
+  }
 }
