@@ -9,12 +9,12 @@ function StreamTransformer(destStream, transformFunc){
 		throw Error('Transform function must be a function');
 	}
 
-	stream.Transform.call(this);
+	stream.Transform.call(this, {objectMode: true});
 	this._transformFunc = transformFunc;
 	this.pipe(destStream);
 }
 
-StreamTransformer.prototype = new stream.Transform();
+StreamTransformer.prototype = new stream.Transform({objectMode: true});
 
 StreamTransformer.prototype._transform = function(chunk, enc, cb){
 	cb(null, this._transformFunc(chunk));
