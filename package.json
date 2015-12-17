@@ -1,6 +1,6 @@
 {
   "name": "stream-trans4mer",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Allows you to preprocess streaming data",
   "main": "index.js",
   "scripts": {
