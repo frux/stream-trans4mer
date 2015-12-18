@@ -34,25 +34,6 @@ it('should transform stream', function(done){
 	});
 });
 
-it('should add trailing \\n if lineMode is on', function(done){
-	var destStream = new stream.Transform({
-		transform: function(chunk, enc, cb){
-			cb(null, chunk);
-		}
-	});
-
-	var transformedStream = new StreamTrans4m(destStream, function(data){
-		return 'foo' + data;
-	}, true);
-
-	transformedStream.write('bar');
-
-	destStream.on('data', function(chunk){
-		assert.equal('foobar\n', chunk.toString());
-		done();
-	});
-});
-
 it('should triggers once when piping', function(done){
 	var readStream = fs.ReadStream(__dirname + '/bigfile'),
 		writeStream = new stream.Writable({ write: function(){} }),

@@ -19,27 +19,8 @@ function StreamTransformer(destStream, transformFunc, lineMode){
 StreamTransformer.prototype = new stream.Transform({objectMode: true});
 
 StreamTransformer.prototype._transform = function(chunk, enc, cb){
-	if(this._lineMode){
-		this._lineData = '';
-
-		for(var i = 0; i < chunk.length; i++){
-			if(chunk[i] !== '\n'){
-				this._lineData += chunk[i];
-			}else{
-				this.push(this._transformFunc(this._lineData + '\n'));
-				this._lineData = '';
-			}
-		}
-
-		if(this._lineData){
-			this.push(this._transformFunc(this._lineData + '\n'));
-			this._lineData = '';
-		}
-
-		cb();
-	}else{
-		cb(null, this._transformFunc(chunk));
-	}
+	this.push(this._transformFunc(chunk));
+	cb();
 };
 
 module.exports = StreamTransformer;
